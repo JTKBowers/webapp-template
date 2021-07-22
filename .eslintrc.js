@@ -6,7 +6,8 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier" // NOTE: this should stay last as it only disables rules that conflict with prettier
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
