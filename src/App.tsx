@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
-import './App.css';
 
 interface AppProps {}
 
@@ -14,10 +13,10 @@ function App({}: AppProps) {
   }, [count, setCount]);
   // Return the App component.
   return (
-    <div className="App">
+    <div className="App m-10">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <p className="text-blue-500">
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <p>
