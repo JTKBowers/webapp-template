@@ -18,8 +18,9 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
+    "lint": "eslint",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "check-format": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "web-test-runner \"src/**/*.test.tsx\""
   },
   "dependencies": {
