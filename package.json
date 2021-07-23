@@ -18,8 +18,9 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
+    "lint": "eslint",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
+    "check-format": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "web-test-runner \"src/**/*.test.tsx\""
   },
   "dependencies": {
@@ -39,8 +40,14 @@
     "@types/react": "^17.0.4",
     "@types/react-dom": "^17.0.3",
     "@types/snowpack-env": "^2.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
     "@web/test-runner": "^0.13.3",
     "chai": "^4.3.4",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "postcss": "^8.3.6",
     "prettier": "^2.2.1",
     "snowpack": "^3.8.0",
