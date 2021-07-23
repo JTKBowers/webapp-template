@@ -13,9 +13,9 @@ function App({}: AppProps) {
   }, [count, setCount]);
   // Return the App component.
   return (
-    <div className="App m-10">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="container mx-auto">
+      <header>
+        <img src={logo} className="w-64" alt="logo" />
         <p className="text-blue-500">
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
@@ -24,7 +24,6 @@ function App({}: AppProps) {
         </p>
         <p>
           <a
-            className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
