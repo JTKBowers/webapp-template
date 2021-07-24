@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 
-interface AppProps {}
-
-function App({}: AppProps) {
+function App(): JSX.Element {
   // Create the count state.
   const [count, setCount] = useState(0);
   // Create the counter (+1 every second).
