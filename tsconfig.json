@@ -23,12 +23,16 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "importsNotUsedAsValues": "error",
-    "noImplicitAny": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "allowUnreachableCode": false,
   }
 }
