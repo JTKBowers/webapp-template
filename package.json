@@ -30,7 +30,7 @@
     "@types/snowpack-env": "^2.3.3",
     "@typescript-eslint/eslint-plugin": "^4.29.3",
     "@typescript-eslint/parser": "^4.29.3",
-    "@web/test-runner": "^0.13.16",
+    "@web/test-runner": "^0.13.22",
     "autoprefixer": "^10.3.3",
     "chai": "^4.3.4",
     "cssnano": "^5.0.8",
