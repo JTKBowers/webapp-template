@@ -18,8 +18,10 @@ jobs:
       run: yarn install --frozen-lockfile
     - run: yarn lint
     - run: yarn check-format
-    - uses: actions/cache@v2
-      key: snowpack
-      path: '.snowpack'
+    - name: cache snowpack build cache
+      uses: actions/cache@v2
+      with:
+        key: snowpack
+        path: '.snowpack'
     - run: yarn test
     - run: yarn build
