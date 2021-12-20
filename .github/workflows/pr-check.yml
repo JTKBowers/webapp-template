@@ -12,11 +12,6 @@ jobs:
       options: --user 1001
     steps:
     - uses: actions/checkout@v2
-    - name: Install node
-      uses: actions/setup-node@v2
-      with:
-        node-version: lts/*
-        cache: 'yarn'
     - name: Install dependencies
       run: yarn install --frozen-lockfile
     - run: yarn lint
