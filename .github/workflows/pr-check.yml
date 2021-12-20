@@ -16,7 +16,7 @@ jobs:
       run: yarn install --frozen-lockfile
     - run: yarn lint
     - run: yarn check-format
-    - name: cache snowpack build cache
+    - name: Save/restore snowpack build cache
       uses: actions/cache@v2
       with:
         key: snowpack
