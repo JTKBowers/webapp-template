@@ -1105,10 +1105,10 @@
     "@web/test-runner-coverage-v8" "^0.4.8"
     playwright "^1.14.0"
 
-"@web/test-runner@^0.13.23":
-  version "0.13.23"
-  resolved "https://registry.yarnpkg.com/@web/test-runner/-/test-runner-0.13.23.tgz#9a8a4f5208de1c108b50eea8bea8b236e311958b"
-  integrity sha512-LgoYVdC/ghl+U6Bg0CoMd+a1J41L2A4zjeVqB9uLSf0iJtjv4TOXFM7TarQKqzQfKULs3tcT4sw1BVU4SZAIwA==
+"@web/test-runner@^0.13.25":
+  version "0.13.25"
+  resolved "https://registry.yarnpkg.com/@web/test-runner/-/test-runner-0.13.25.tgz#ba4bf33886e576a4d8cf51f73ef99048486eff24"
+  integrity sha512-biKE36ygFu7F4cO31WAM0oeDecJygzjiTUPg4MHBaeM8U+wj8uzhYfGr2T4iAKkx1IDCcSRF95nkrqF9C2Wpqw==
   dependencies:
     "@web/browser-logs" "^0.2.2"
     "@web/config-loader" "^0.1.3"
