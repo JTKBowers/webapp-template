@@ -134,7 +134,7 @@
   dependencies:
     "@parcel/plugin" "2.3.2"
 
-"@parcel/config-default@2.3.2":
+"@parcel/config-default@2.3.2", "@parcel/config-default@^2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@parcel/config-default/-/config-default-2.3.2.tgz#3f21a37fa07b22de9cd6b1aea19bc310a02d4abb"
   integrity sha512-E7/iA7fGCYvXU3u6zF9nxjeDVsgjCN6MVvDjymjaxYMoDWTIsPV245SBEXqzgtmzbMAV+VAl4rVWLMB4pzMt9g==
@@ -170,7 +170,7 @@
     "@parcel/transformer-react-refresh-wrap" "2.3.2"
     "@parcel/transformer-svg" "2.3.2"
 
-"@parcel/core@2.3.2":
+"@parcel/core@2.3.2", "@parcel/core@^2.3.2":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@parcel/core/-/core-2.3.2.tgz#1b9a79c1ff96dba5e0f53d4277bed4e7ab4590d0"
   integrity sha512-gdJzpsgeUhv9H8T0UKVmyuptiXdduEfKIUx0ci+/PGhq8cCoiFnlnuhW6H7oLr79OUc+YJStabDJuG4U2A6ysw==
@@ -4028,6 +4028,11 @@ pretty-format@^27.0.2:
     ansi-regex "^5.0.0"
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
+
+process@^0.11.10:
+  version "0.11.10"
+  resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
+  integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
 progress@2.0.3, progress@^2.0.3:
   version "2.0.3"
