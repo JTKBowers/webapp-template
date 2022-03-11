@@ -45,8 +45,14 @@ export default function () {
           port: 3000
         },
       });
-      await bundler.run();
-      subscription = await bundler.watch();
+      await new Promise(async (resolve, reject) => {
+        subscription = await bundler.watch((err, event) => {
+          if (err) reject(err)
+          if (event && event.type === "buildSuccess") {
+            resolve()
+          }
+        });
+      });
     },
     async serverStop() {
       await subscription.unsubscribe();
