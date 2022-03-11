@@ -8,12 +8,19 @@ import path from 'path';
 // TODO: use proper path parsing here instead of a dumb find/replace
 const rewritePath = (path) => {
   return path
-    .replace('src/', '/dist/')
+    .replace('src/', 'dist/')
     .replace('.jsx', '.js')
     .replace('.tsx', '.js')
     .replace('.ts', '.js');
 };
 
+// TODO: use a proper package for this
+const getMimeTypeFromExtension = (fileExtension) => {
+  return {
+    js: 'application/javascript',
+    png: 'image/png',
+  }[fileExtension];
+};
 /**
  * Checks whether the url is a virtual file served by @web/test-runner.
  * @param {string} url
@@ -49,6 +56,7 @@ export default function () {
         subscription = await bundler.watch((err, event) => {
           if (err) reject(err);
           if (event && event.type === 'buildSuccess') {
+            bundleGraph = event.bundleGraph;
             resolve();
           }
         });
@@ -61,11 +69,19 @@ export default function () {
       if (isTestRunnerFile(request.url)) {
         return;
       }
-      //TODO: fix content-type
+
+      const parcelPath = rewritePath(request.path);
+
+      // Get the bundle to work out its mime type. Could potentially also just go off the file path?
+      const bundle = bundleGraph
+        .getBundles()
+        .find((bundle) => bundle.filePath == parcelPath);
+      if (!bundle) return;
+
       try {
         return {
-          body: await outputFS.readFile(rewritePath(request.path), 'utf8'),
-          type: 'text/javascript',
+          body: await outputFS.readFile(parcelPath, 'utf8'),
+          type: getMimeTypeFromExtension(bundle.type),
         };
       } catch {
         return;
