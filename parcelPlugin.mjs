@@ -5,6 +5,14 @@ const { MemoryFS } = pkg;
 
 import path from 'path';
 
+// TODO: use proper path parsing here instead of a dumb find/replace
+const rewritePath = (path) => {return path
+  .replace("src/", "/dist/")
+  .replace('.jsx', '.js')
+  .replace('.tsx', '.js')
+  .replace('.ts', '.js');}
+
+
 
 /**
  * Checks whether the url is a virtual file served by @web/test-runner.
@@ -47,14 +55,9 @@ export default function () {
       if (isTestRunnerFile(request.url)) {
         return;
       }
-      const reqPath = request.path;
-      if (reqPath.includes("App")) {
-        // Parcel rewrites src/App.test.tsx to /dist/App.test.js, so rewrite the path and hardcode the mimetype
-        return { body: await outputFS.readFile("/dist/App.test.js", 'utf8'), type: "text/javascript"};
-      }
-      //TODO: fix
+      //TODO: fix content-type
       try {
-        return { body: await outputFS.readFile(reqPath.replace("src/", "/dist/"), 'utf8'), type: "text/javascript"};
+        return { body: await outputFS.readFile(rewritePath(request.path), 'utf8'), type: "text/javascript"};
       } catch {
         return;
       }
