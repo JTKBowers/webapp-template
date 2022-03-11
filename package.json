@@ -1,6 +1,6 @@
 {
   "name": "webapp-template",
-  "description": "A preconfigured template for Snowpack with React, TypeScript, TailwindCSS, along with Linting, dependency upgrades and PR checks",
+  "description": "A preconfigured template for Parcel with React, TypeScript, TailwindCSS, along with Linting, dependency upgrades and PR checks",
   "version": "0.1.0",
   "license": "MIT",
   "homepage": "https://github.com/JTKBowers/webapp-template",
@@ -29,7 +29,6 @@
     "@types/mocha": "^9.1.0",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
-    "@types/snowpack-env": "^2.3.3",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
     "@web/test-runner": "^0.13.27",
