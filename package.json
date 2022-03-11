@@ -5,23 +5,25 @@
   "license": "MIT",
   "homepage": "https://github.com/JTKBowers/webapp-template",
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build",
+    "start": "parcel",
+    "build": "parcel build",
     "lint": "eslint src",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "check-format": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "test": "web-test-runner \"src/**/*.test.tsx\""
   },
+  "source": "public/index.html",
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@snowpack/plugin-dotenv": "^2.2.0",
-    "@snowpack/plugin-postcss": "^1.4.3",
-    "@snowpack/plugin-react-refresh": "^2.5.0",
-    "@snowpack/plugin-typescript": "^1.2.1",
-    "@snowpack/web-test-runner-plugin": "^0.2.2",
+    "@parcel/config-default": "^2.3.2",
+    "@parcel/core": "^2.3.2",
     "@testing-library/react": "^12.1.4",
     "@types/chai": "^4.3.0",
     "@types/mocha": "^9.1.0",
@@ -39,9 +41,10 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "parcel": "^2.3.2",
     "postcss": "^8.4.8",
     "prettier": "^2.5.1",
-    "snowpack": "^3.8.8",
+    "process": "^0.11.10",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.6.2"
   }
