@@ -2,11 +2,8 @@ import { isTestFilePath } from '@web/test-runner';
 import {Parcel, createWorkerFarm} from '@parcel/core';
 import pkg from '@parcel/fs';
 const { MemoryFS } = pkg;
-// import { MemoryFS } from '@parcel/fs';
 
 import path from 'path';
-
-
 
 
 /**
@@ -20,10 +17,10 @@ function isTestRunnerFile(url) {
 }
 
 export default function () {
-  // let server, config;
   let workerFarm;
   let outputFS;
   let bundler, bundleGraph;
+  let subscription;
 
   return {
     name: 'parcel-plugin',
@@ -33,72 +30,31 @@ export default function () {
 
       bundler = new Parcel({
         defaultConfig: '@parcel/config-default',
-        entries: "src/App.test.tsx",
+        entries: ["src/App.test.tsx"],
         workerFarm,
-        outputFS
+        outputFS,
+        serveOptions: {
+          port: 3000
+        },
       });
-      console.log("a");
-      bundleGraph = await bundler.run();
+      await bundler.run();
+      subscription = await bundler.watch();
     },
-    // async serverStart({ fileWatcher }) {
-    //   console.log('I am a plugin');
-    //   // TODO: load project config
-    //   // config = await snowpack.loadConfiguration({
-    //   //   mode: 'test',
-    //   //   packageOptions: { external: ['/__web-dev-server__web-socket.js'] },
-    //   //   devOptions: { open: 'none', output: 'stream', hmr: false },
-    //   // });
-    //   // npm packages should be installed/prepared ahead of time.
-    //   console.log('[parcel] starting server...');
-    //   console.log(fileWatcher.getWatched());
-    //   // fileWatcher.add(Object.keys(config.mount));
-    //   // server = await snowpack.startServer({
-    //   //   config,
-    //   //   lockfile: null,
-    //   // });
-    //   bundler = new Parcel({
-    //     entries: 'a.js',
-    //     defaultConfig: '@parcel/config-default'
-    //   });
-    // },
-    // async serverStop() {
-    //   return server.shutdown();
-    // },
-    // async serve({ request }) {
-    //   if (isTestRunnerFile(request.url)) {
-    //     return;
-    //   }
-    //   const reqPath = request.path;
-    //   try {
-    //     const result = await server.loadUrl(reqPath, { isSSR: false });
-    //     return { body: result.contents, type: result.contentType };
-    //   } catch {
-    //     return;
-    //   }
-    // },
-    async transformImport({ source }) {
-      if (!isTestFilePath(source) || isTestRunnerFile(source)) {
+    async serverStop() {
+      await subscription.unsubscribe();
+    },
+    async serve({ request }) {
+      if (isTestRunnerFile(request.url)) {
         return;
       }
-      // PERF(fks): https://github.com/withastro/snowpack/pull/1259/files#r502963818
-      const reqPath = source.substring(
-        0,
-        source.indexOf('?') === -1 ? undefined : source.indexOf('?'),
-      );
-      const sourcePath = path.join(process.cwd(), reqPath);
-
-      
-      console.log("a");
-      // let bundles = bundleGraph.getBundles();
-      // console.log(`✨ Built ${bundles.length} bundles in ${buildTime}ms!`);
-      // let {bundleGraph} = await bundler.run();
-
-      for (let bundle of bundleGraph.getBundles()) {
-        console.log(bundle.filePath);
-        return { body: await outputFS.readFile(bundle.filePath, 'utf8')};
+      const reqPath = request.path;
+      if (reqPath.includes("App")) {
+        // Parcel rewrites src/App.test.tsx to /dist/App.test.js, so rewrite the path and hardcode the mimetype
+        return { body: await outputFS.readFile("/dist/App.test.js", 'utf8'), type: "text/javascript"};
       }
+      //TODO: fix
       try {
-        return;
+        return { body: await outputFS.readFile(reqPath.replace("src/", "/dist/"), 'utf8'), type: "text/javascript"};
       } catch {
         return;
       }
