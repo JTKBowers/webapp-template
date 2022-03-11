@@ -1,18 +1,18 @@
 import { isTestFilePath } from '@web/test-runner';
-import {Parcel, createWorkerFarm} from '@parcel/core';
+import { Parcel, createWorkerFarm } from '@parcel/core';
 import pkg from '@parcel/fs';
 const { MemoryFS } = pkg;
 
 import path from 'path';
 
 // TODO: use proper path parsing here instead of a dumb find/replace
-const rewritePath = (path) => {return path
-  .replace("src/", "/dist/")
-  .replace('.jsx', '.js')
-  .replace('.tsx', '.js')
-  .replace('.ts', '.js');}
-
-
+const rewritePath = (path) => {
+  return path
+    .replace('src/', '/dist/')
+    .replace('.jsx', '.js')
+    .replace('.tsx', '.js')
+    .replace('.ts', '.js');
+};
 
 /**
  * Checks whether the url is a virtual file served by @web/test-runner.
@@ -38,18 +38,18 @@ export default function () {
 
       bundler = new Parcel({
         defaultConfig: '@parcel/config-default',
-        entries: ["src/App.test.tsx"],
+        entries: ['src/App.test.tsx'],
         workerFarm,
         outputFS,
         serveOptions: {
-          port: 3000
+          port: 3000,
         },
       });
       await new Promise(async (resolve, reject) => {
         subscription = await bundler.watch((err, event) => {
-          if (err) reject(err)
-          if (event && event.type === "buildSuccess") {
-            resolve()
+          if (err) reject(err);
+          if (event && event.type === 'buildSuccess') {
+            resolve();
           }
         });
       });
@@ -63,7 +63,10 @@ export default function () {
       }
       //TODO: fix content-type
       try {
-        return { body: await outputFS.readFile(rewritePath(request.path), 'utf8'), type: "text/javascript"};
+        return {
+          body: await outputFS.readFile(rewritePath(request.path), 'utf8'),
+          type: 'text/javascript',
+        };
       } catch {
         return;
       }
