@@ -24,7 +24,7 @@
   "devDependencies": {
     "@parcel/config-default": "^2.3.2",
     "@parcel/core": "^2.3.2",
-    "@parcel/optimizer-css": "^2.3.2",
+    "@parcel/optimizer-css": "^2.4.1",
     "@parcel/transformer-css-experimental": "^2.3.2",
     "@parcel/transformer-postcss": "^2.3.2",
     "@testing-library/react": "^13.0.1",
